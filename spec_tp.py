@@ -166,12 +166,24 @@ class Spec:
         self.fed = []; self.hw = -1; self.cached = 0
         self.pre_step = None  # test hook: f(spec, out_so_far) before each decode replay
 
-    def ar(self, t):
+    def ar(self, t, pft=(), pfb=()):
         # multi-row all-reduce: MIMO_SPEC_CAR_NB blocks when > 1 row (needs MIMO_CAR_NB >= it at car.setup)
         if self.W > 1 and self.m.car is not None and t.dim() == 2 and t.shape[0] > 1:
-            self.m.car.allreduce(t, nb=SPEC_NB)
+            self.m.car.allreduce(t, nb=SPEC_NB, pft=pft, pfb=pfb)
         else:
-            self.m.ar(t)
+            self.m.ar(t, pft, pfb)
+
+    def _pfl(self, which, li):
+        """L2 prefetch ranges issued by extra blocks of the all-reduce (same policy as TPModel, MIMO_PF)."""
+        ls, r = self.m.layers, []
+        Ln = ls[li + 1] if li + 1 < len(ls) else None
+        for kind, mb in TP.PF[which]:
+            t = {"q": Ln.qkv_w if Ln else None, "o": Ln.o_w if Ln else None, "g": (ls[li] if which == "A" else Ln)}[kind]
+            if kind == "g":
+                t = t.gate_w if (t is not None and t.moe) else None
+            if t is not None and mb > 0:
+                r.append((t, mb * 2 ** 20))
+        return [t for t, _ in r], [b for _, b in r]
 
     # ------------------------------------------------------------------ pieces
     def _argmax_rows(self, h, mm, sample=False, draft=False):
@@ -243,11 +255,11 @@ class Spec:
         X, D, A = self.X[:MM], self.D[:MM], self.A[:MM]
         torch.index_select(m.embed, 0, tok, out=X)
         D.zero_()
-        for L in m.layers:
+        for li, L in enumerate(m.layers):
             attn_m(L, sc, X, D, sst, A)
-            self.ar(A)
+            self.ar(A, *self._pfl("A", li))
             mlp_m(L, sc, X, A, D)
-            self.ar(D)
+            self.ar(D, *self._pfl("D", li))
         hf = self.hf[:MM]
         KM.add_rmsnorm_m(X, m.norm, EPS, d=D, xo=X, h=hf)
         g = self._argmax_rows(hf, MM, sample)

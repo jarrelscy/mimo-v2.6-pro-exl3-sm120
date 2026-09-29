@@ -1,0 +1,89 @@
+8-row nb=4 bit-exact: True
+rows=1 nb=1: 13.2 us/AR (incl 2 small kernels)
+rows=1 nb=2: 12.2 us/AR (incl 2 small kernels)
+rows=1 nb=4: 16.2 us/AR (incl 2 small kernels)
+rows=1 nb=8: 29.7 us/AR (incl 2 small kernels)
+rows=2 nb=1: 27.1 us/AR (incl 2 small kernels)
+rows=2 nb=2: 19.7 us/AR (incl 2 small kernels)
+rows=2 nb=4: 25.8 us/AR (incl 2 small kernels)
+rows=2 nb=8: 33.2 us/AR (incl 2 small kernels)
+rows=4 nb=1: 51.1 us/AR (incl 2 small kernels)
+rows=4 nb=2: 36.5 us/AR (incl 2 small kernels)
+rows=4 nb=4: 35.8 us/AR (incl 2 small kernels)
+rows=4 nb=8: 58.5 us/AR (incl 2 small kernels)
+rows=8 nb=1: 95.4 us/AR (incl 2 small kernels)
+rows=8 nb=2: 53.8 us/AR (incl 2 small kernels)
+rows=8 nb=4: 96.4 us/AR (incl 2 small kernels)
+rows=8 nb=8: 137.5 us/AR (incl 2 small kernels)
+prefetch AR bit-identical: True; fused x maxdiff 0.0; h mismatches 0/6144 (max abs 0)
+mode AR+norm: 15.71 us per (filler+AR+norm)
+mode fused: 18.87 us per (filler+AR+norm)
+[04:15:52] [spec K=1] completion: {'prompt_tokens': 5, 'new_tokens': 32, 'prefill_s': 0.052, 'prefill_tok_s': 96.9, 'step_ms_median': 16.422, 'steps': 17, 'tok_per_step': 1.824, 'decode_tok_s': 110.45, 'same_prefix_as_base': 4, 'identical': False, 'accept_hist': [2, 15]}
+[04:15:53] [spec K=1] chat: {'prompt_tokens': 20, 'new_tokens': 49, 'prefill_s': 0.129, 'prefill_tok_s': 154.9, 'step_ms_median': 17.115, 'steps': 26, 'tok_per_step': 1.846, 'decode_tok_s': 107.78, 'same_prefix_as_base': 15, 'identical': False, 'accept_hist': [4, 22]}
+[04:15:56] [spec K=1] long: {'prompt_tokens': 34, 'new_tokens': 300, 'prefill_s': 0.164, 'prefill_tok_s': 207.2, 'step_ms_median': 16.944, 'steps': 174, 'tok_per_step': 1.718, 'decode_tok_s': 101.41, 'same_prefix_as_base': 12, 'identical': False, 'accept_hist': [49, 125]}
+[04:15:59] [spec K=1] code: {'prompt_tokens': 30, 'new_tokens': 300, 'prefill_s': 0.168, 'prefill_tok_s': 178.7, 'step_ms_median': 17.404, 'steps': 157, 'tok_per_step': 1.904, 'decode_tok_s': 109.24, 'same_prefix_as_base': 219, 'identical': False, 'accept_hist': [15, 142]}
+[04:16:08] [spec K=1] ctx2000: {'prompt_tokens': 1938, 'new_tokens': 10, 'prefill_s': 9.321, 'prefill_tok_s': 207.9, 'step_ms_median': 17.955, 'steps': 5, 'tok_per_step': 1.8, 'decode_tok_s': 100.73, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 5]}
+[04:16:27] [spec K=1] ctx4000: {'prompt_tokens': 3938, 'new_tokens': 10, 'prefill_s': 19.275, 'prefill_tok_s': 204.3, 'step_ms_median': 18.013, 'steps': 5, 'tok_per_step': 1.8, 'decode_tok_s': 100.68, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 5]}
+[04:16:28] [spec K=2] captured 0.3s mem 72.4 GiB
+[04:16:28] [spec K=2] completion: {'prompt_tokens': 5, 'new_tokens': 32, 'prefill_s': 0.054, 'prefill_tok_s': 92.1, 'step_ms_median': 20.182, 'steps': 16, 'tok_per_step': 1.938, 'decode_tok_s': 95.87, 'same_prefix_as_base': 7, 'identical': False, 'accept_hist': [4, 7, 5]}
+[04:16:29] [spec K=2] chat: {'prompt_tokens': 20, 'new_tokens': 35, 'prefill_s': 0.133, 'prefill_tok_s': 150.4, 'step_ms_median': 21.097, 'steps': 15, 'tok_per_step': 2.267, 'decode_tok_s': 107.66, 'same_prefix_as_base': 35, 'identical': True, 'accept_hist': [2, 7, 6]}
+[04:16:32] [spec K=2] long: {'prompt_tokens': 34, 'new_tokens': 300, 'prefill_s': 0.169, 'prefill_tok_s': 201.5, 'step_ms_median': 20.841, 'steps': 148, 'tok_per_step': 2.02, 'decode_tok_s': 96.9, 'same_prefix_as_base': 80, 'identical': False, 'accept_hist': [36, 73, 39]}
+[04:16:35] [spec K=2] code: {'prompt_tokens': 30, 'new_tokens': 300, 'prefill_s': 0.172, 'prefill_tok_s': 174.2, 'step_ms_median': 21.773, 'steps': 120, 'tok_per_step': 2.492, 'decode_tok_s': 114.25, 'same_prefix_as_base': 219, 'identical': False, 'accept_hist': [8, 44, 68]}
+[04:16:44] [spec K=2] ctx2000: {'prompt_tokens': 1938, 'new_tokens': 10, 'prefill_s': 9.387, 'prefill_tok_s': 206.5, 'step_ms_median': 22.141, 'steps': 4, 'tok_per_step': 2.25, 'decode_tok_s': 102.35, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 2, 2]}
+[04:17:03] [spec K=2] ctx4000: {'prompt_tokens': 3938, 'new_tokens': 10, 'prefill_s': 19.152, 'prefill_tok_s': 205.6, 'step_ms_median': 22.025, 'steps': 4, 'tok_per_step': 2.25, 'decode_tok_s': 101.98, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 2, 2]}
+[04:17:04] [spec K=3] captured 0.2s mem 72.4 GiB
+[04:17:04] [spec K=3] completion: {'prompt_tokens': 5, 'new_tokens': 32, 'prefill_s': 0.057, 'prefill_tok_s': 87.0, 'step_ms_median': 24.058, 'steps': 15, 'tok_per_step': 2.067, 'decode_tok_s': 85.87, 'same_prefix_as_base': 7, 'identical': False, 'accept_hist': [3, 7, 4, 1]}
+[04:17:04] [spec K=3] chat: {'prompt_tokens': 20, 'new_tokens': 35, 'prefill_s': 0.099, 'prefill_tok_s': 201.1, 'step_ms_median': 24.758, 'steps': 15, 'tok_per_step': 2.267, 'decode_tok_s': 91.51, 'same_prefix_as_base': 35, 'identical': True, 'accept_hist': [3, 7, 3, 2]}
+[04:17:08] [spec K=3] long: {'prompt_tokens': 34, 'new_tokens': 300, 'prefill_s': 0.172, 'prefill_tok_s': 197.7, 'step_ms_median': 24.548, 'steps': 147, 'tok_per_step': 2.034, 'decode_tok_s': 82.87, 'same_prefix_as_base': 80, 'identical': False, 'accept_hist': [36, 75, 31, 5]}
+[04:17:11] [spec K=3] code: {'prompt_tokens': 30, 'new_tokens': 300, 'prefill_s': 0.177, 'prefill_tok_s': 169.9, 'step_ms_median': 25.988, 'steps': 113, 'tok_per_step': 2.646, 'decode_tok_s': 101.96, 'same_prefix_as_base': 219, 'identical': False, 'accept_hist': [8, 38, 52, 15]}
+[04:17:21] [spec K=3] ctx2000: {'prompt_tokens': 1938, 'new_tokens': 10, 'prefill_s': 9.37, 'prefill_tok_s': 206.8, 'step_ms_median': 25.929, 'steps': 4, 'tok_per_step': 2.25, 'decode_tok_s': 87.36, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 2, 2, 0]}
+[04:17:40] [spec K=3] ctx4000: {'prompt_tokens': 3938, 'new_tokens': 10, 'prefill_s': 19.062, 'prefill_tok_s': 206.6, 'step_ms_median': 26.217, 'steps': 3, 'tok_per_step': 3.0, 'decode_tok_s': 114.74, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 1, 1, 1]}
+[04:17:40] [spec K=3b] captured 0.2s mem 72.2 GiB
+[04:17:41] [spec K=3b] completion: {'prompt_tokens': 5, 'new_tokens': 32, 'prefill_s': 0.058, 'prefill_tok_s': 86.0, 'step_ms_median': 24.455, 'steps': 15, 'tok_per_step': 2.067, 'decode_tok_s': 84.23, 'same_prefix_as_base': 7, 'identical': False, 'accept_hist': [3, 7, 4, 1]}
+[04:17:41] [spec K=3b] chat: {'prompt_tokens': 20, 'new_tokens': 35, 'prefill_s': 0.102, 'prefill_tok_s': 196.9, 'step_ms_median': 26.135, 'steps': 15, 'tok_per_step': 2.267, 'decode_tok_s': 86.66, 'same_prefix_as_base': 35, 'identical': True, 'accept_hist': [3, 6, 4, 2]}
+[04:17:45] [spec K=3b] long: {'prompt_tokens': 34, 'new_tokens': 300, 'prefill_s': 0.179, 'prefill_tok_s': 190.2, 'step_ms_median': 25.864, 'steps': 147, 'tok_per_step': 2.034, 'decode_tok_s': 78.76, 'same_prefix_as_base': 80, 'identical': False, 'accept_hist': [36, 74, 33, 4]}
+[04:17:48] [spec K=3b] code: {'prompt_tokens': 30, 'new_tokens': 300, 'prefill_s': 0.183, 'prefill_tok_s': 164.4, 'step_ms_median': 26.96, 'steps': 112, 'tok_per_step': 2.67, 'decode_tok_s': 99.16, 'same_prefix_as_base': 219, 'identical': False, 'accept_hist': [8, 35, 54, 15]}
+[04:17:58] [spec K=3b] ctx2000: {'prompt_tokens': 1938, 'new_tokens': 10, 'prefill_s': 9.543, 'prefill_tok_s': 203.1, 'step_ms_median': 26.816, 'steps': 4, 'tok_per_step': 2.25, 'decode_tok_s': 84.26, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 2, 2, 0]}
+[04:18:17] [spec K=3b] ctx4000: {'prompt_tokens': 3938, 'new_tokens': 10, 'prefill_s': 19.206, 'prefill_tok_s': 205.0, 'step_ms_median': 26.91, 'steps': 3, 'tok_per_step': 3.0, 'decode_tok_s': 111.87, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 1, 1, 1]}
+[04:18:17] [spec K=4] captured 0.3s mem 72.5 GiB
+[04:18:18] [spec K=4] completion: {'prompt_tokens': 5, 'new_tokens': 32, 'prefill_s': 0.032, 'prefill_tok_s': 157.8, 'step_ms_median': 27.198, 'steps': 15, 'tok_per_step': 2.067, 'decode_tok_s': 76.09, 'same_prefix_as_base': 7, 'identical': False, 'accept_hist': [3, 7, 4, 1, 0]}
+[04:18:18] [spec K=4] chat: {'prompt_tokens': 20, 'new_tokens': 35, 'prefill_s': 0.104, 'prefill_tok_s': 192.9, 'step_ms_median': 28.97, 'steps': 15, 'tok_per_step': 2.267, 'decode_tok_s': 78.35, 'same_prefix_as_base': 35, 'identical': True, 'accept_hist': [3, 7, 3, 2, 0]}
+[04:18:23] [spec K=4] long: {'prompt_tokens': 34, 'new_tokens': 300, 'prefill_s': 0.178, 'prefill_tok_s': 191.1, 'step_ms_median': 28.441, 'steps': 147, 'tok_per_step': 2.034, 'decode_tok_s': 71.55, 'same_prefix_as_base': 80, 'identical': False, 'accept_hist': [36, 75, 31, 5, 0]}
+[04:18:26] [spec K=4] code: {'prompt_tokens': 30, 'new_tokens': 300, 'prefill_s': 0.182, 'prefill_tok_s': 165.0, 'step_ms_median': 29.722, 'steps': 112, 'tok_per_step': 2.67, 'decode_tok_s': 89.9, 'same_prefix_as_base': 219, 'identical': False, 'accept_hist': [8, 39, 50, 11, 4]}
+[04:18:36] [spec K=4] ctx2000: {'prompt_tokens': 1938, 'new_tokens': 10, 'prefill_s': 9.416, 'prefill_tok_s': 205.8, 'step_ms_median': 29.724, 'steps': 4, 'tok_per_step': 2.25, 'decode_tok_s': 76.16, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 2, 2, 0, 0]}
+[04:18:55] [spec K=4] ctx4000: {'prompt_tokens': 3938, 'new_tokens': 10, 'prefill_s': 19.139, 'prefill_tok_s': 205.8, 'step_ms_median': 29.969, 'steps': 3, 'tok_per_step': 3.0, 'decode_tok_s': 100.47, 'needle': True, 'same_prefix_as_base': 10, 'identical': True, 'accept_hist': [0, 1, 1, 1, 0]}
+[04:18:55] --- completion: base: 87.98 tok/s | K0: 79.27 tok/s | K1: 110.45 tok/s | K2: 95.87 tok/s | K3: 85.87 tok/s | K3b: 84.23 tok/s | K4: 76.09 tok/s
+[04:18:55] --- chat: base: 86.77 tok/s | K0: 77.57 tok/s | K1: 107.78 tok/s | K2: 107.66 tok/s | K3: 91.51 tok/s | K3b: 86.66 tok/s | K4: 78.35 tok/s
+[04:18:55] --- long: base: 87.3 tok/s | K0: 78.65 tok/s | K1: 101.41 tok/s | K2: 96.9 tok/s | K3: 82.87 tok/s | K3b: 78.76 tok/s | K4: 71.55 tok/s
+[04:18:55] --- code: base: 85.41 tok/s | K0: 77.38 tok/s | K1: 109.24 tok/s | K2: 114.25 tok/s | K3: 101.96 tok/s | K3b: 99.16 tok/s | K4: 89.9 tok/s
+[04:18:55] --- ctx2000: base: 84.29 tok/s | K0: 78.1 tok/s | K1: 100.73 tok/s | K2: 102.35 tok/s | K3: 87.36 tok/s | K3b: 84.26 tok/s | K4: 76.16 tok/s
+[04:18:55] --- ctx4000: base: 83.32 tok/s | K0: 76.08 tok/s | K1: 100.68 tok/s | K2: 101.98 tok/s | K3: 114.74 tok/s | K3b: 111.87 tok/s | K4: 100.47 tok/s
+== base M=1 graph: kernel time 11.64 ms/step
+  cold MoE (EXL3 trellis)        2.994 ms   25.7%
+  bf16 o_proj/lm_head gemv       2.589 ms   22.3%
+  fp8 qkv/draft gemv             1.951 ms   16.8%
+  allreduce                      1.941 ms   16.7%
+  gate+route                     0.782 ms    6.7%
+  hot MoE (NVFP4)                0.490 ms    4.2%
+  norm/rope/kv                   0.474 ms    4.1%
+  attention                      0.306 ms    2.6%
+  dense L0/MTP mm                0.066 ms    0.6%
+  other                          0.045 ms    0.4%
+== spec K=3 (MM=4) graph: kernel time 23.93 ms/step
+  allreduce                      7.965 ms   33.3%
+  cold MoE (EXL3 trellis)        6.450 ms   27.0%
+  fp8 qkv/draft gemv             2.910 ms   12.2%
+  bf16 o_proj/lm_head gemv       2.816 ms   11.8%
+  hot MoE (NVFP4)                1.479 ms    6.2%
+  gate+route                     0.874 ms    3.7%
+  attention                      0.669 ms    2.8%
+  norm/rope/kv                   0.533 ms    2.2%
+  other                          0.161 ms    0.7%
+  dense L0/MTP mm                0.073 ms    0.3%
+[04:24:04] [0] pf=: median 11.419 ms  87.5 tok/s  n=200  same_as_first=True
+[04:24:07] [0] fuse=0: median 11.453 ms  87.3 tok/s  n=200  same_as_first=True
+[04:24:10] [0] pf=A=q42: median 11.153 ms  89.6 tok/s  n=200  same_as_first=True
+[04:24:13] [0] pf=A=q42/D=o24: median 10.924 ms  91.5 tok/s  n=200  same_as_first=True
+[04:24:16] [0] pf=A=q42+g9/D=o24: median 10.954 ms  91.3 tok/s  n=200  same_as_first=True
+[04:24:19] [0] fuse=1: median 12.239 ms  81.7 tok/s  n=200  same_as_first=False
+released by mimo

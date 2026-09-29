@@ -3,14 +3,19 @@
 A fast TP4 decode path for the MiMo-V2.6-Pro EXL3 quant on 4x RTX PRO 6000 Blackwell (96 GB, PCIe, no NVLink). It uses
 exllamav3 kernels plus custom fused kernels, CUDA graphs and a custom P2P all-reduce.
 
-| stage | ms/step | tok/s |
-|---|---|---|
-| reference loader | ~345 | 2.9 |
-| TP4, fused kernels, one CUDA graph per step | 12.64 | 79.1 |
-| + custom all-reduce (car), qkv/gate kernels | 11.80 | 83.0 |
+Single stream, greedy, 300-token story / code, measured on the full model (see PROGRESS.md for every run):
 
-MTP speculative decoding (spec_tp.py) passes single-GPU tests, and the full-model numbers are pending. See PROGRESS.md
-for the full log, microbenchmarks and what didn't work.
+| stage | ms/step | story tok/s | code tok/s | @2K ctx | @4K ctx |
+|---|---|---|---|---|---|
+| reference loader | ~345 | 2.9 | - | - | - |
+| TP4, fused kernels, one CUDA graph per step | 12.64 | 79.1 | - | 76.5 | 75.3 |
+| + custom all-reduce (car), qkv/gate kernels | 11.80 | 83.0 | - | 81.6 | 77.2 |
+| + L2 prefetch during all-reduces, size-tuned car threads | 10.67 | 93.6 | 91.4 | 90.1 | 88.6 |
+| + MTP self-speculation K=2 (server default) | 18.8 / step, 2.0-2.5 tok/step | 107.4 | 127.4 | 116.2 | 114.5 |
+
+Speculation is output-lossless with respect to the verifier (emitted tokens are always the main model's argmax); the
+M-row verify kernels round differently from the 1-row kernels, so greedy text can drift from the non-spec path after a
+few dozen tokens, as with any kernel change.
 
 ## Serving
 
@@ -38,7 +43,8 @@ curl localhost:8003/v1/chat/completions -H 'Content-Type: application/json' \
 - Single stream: requests are served one at a time. Context is `MIMO_LMAX` tokens (default 32768).
 - First start builds the extensions and autotunes the kernels, which takes a few minutes; later starts use the caches.
 - `PORT`, `MASTER_PORT` and `MIMO_LMAX` set the port, the torch.distributed port and the context length.
-  `MIMO_SPEC=K` turns on MTP speculative decoding (experimental, off by default).
+  `MIMO_SPEC=K` sets the MTP speculation depth (default 2; 0 = plain decode). Sampled requests (temperature > 0) use
+  plain decode.
 - The GPUs talk over PCIe P2P (`NCCL_P2P_LEVEL=SYS`); the custom all-reduce needs P2P between all four GPUs.
 
 ## Files

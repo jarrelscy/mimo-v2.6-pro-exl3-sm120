@@ -1,0 +1,757 @@
+{
+ "env": {
+  "MIMO_EXL3_DIR": "/data/models/jarrelscy/MiMo-V2.6-Pro-EXL3",
+  "NCCL_P2P_LEVEL": "SYS",
+  "MIMO_MTP": "1"
+ },
+ "runs": {
+  "base": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.06,
+    "prefill_tok_s": 83.7,
+    "step_ms_median": 11.362,
+    "steps": 31,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 87.98,
+    "text": " Paris. In the early Middle Ages, Paris was the largest city in the world. The city is located in the north of the country on the river Seine"
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 35,
+    "prefill_s": 0.23,
+    "prefill_tok_s": 86.8,
+    "step_ms_median": 11.521,
+    "steps": 34,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 86.77,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process also releases oxygen as a byproduct.<|im_end|>"
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.393,
+    "prefill_tok_s": 86.4,
+    "step_ms_median": 11.448,
+    "steps": 299,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 87.3,
+    "text": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on wet sand. Half-buried in the foam was a green glass bottle, corked tight with wax.\n\nHe pried it open. Inside was a single sheet of paper, brittle and yellowed. The handwriting was elegant, dated 1892.\n\n*\u201cTo whoever finds this,\u201d* it read. *\u201cI am the keeper of the St. Jude Light. The fog is thick tonight, and I fear the ship approaching the rocks cannot see the beam. I have climbed to the top to signal with a flare. If you find this, know that I did not abandon my post.\u201d*\n\nElias looked up at the lighthouse. He had lived here for twenty years and knew every inch of the structure. He knew the history, too. The keeper in 1892 had vanished during a storm, presumed lost at sea.\n\nHe looked back at the note. The ink was faded, but the signature was clear: *Elias Thorne.*\n\nElias dropped the bottle. He looked at his hands\u2014weathered, yes, but not the hands of a"
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.352,
+    "prefill_tok_s": 85.3,
+    "step_ms_median": 11.706,
+    "steps": 299,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 85.41,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2, 3])\n        [1, 2, 3]\n        >>> merge_sorted_lists([1, 2], [])\n        [1, 2]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n        if list1[i"
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 22.766,
+    "prefill_tok_s": 85.1,
+    "step_ms_median": 11.862,
+    "steps": 9,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 84.29,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>"
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 46.944,
+    "prefill_tok_s": 83.9,
+    "step_ms_median": 11.987,
+    "steps": 9,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 83.32,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>"
+   }
+  },
+  "K0": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.062,
+    "prefill_tok_s": 80.8,
+    "step_ms_median": 12.679,
+    "steps": 31,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 79.27,
+    "text": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+    "same_prefix_as_base": 7,
+    "identical": false,
+    "accept_hist": [
+     31
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 49,
+    "prefill_s": 0.259,
+    "prefill_tok_s": 77.2,
+    "step_ms_median": 12.888,
+    "steps": 48,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 77.57,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert carbon dioxide and water into food (glucose) and oxygen. It is the fundamental way that energy from the sun is captured and used to power life on Earth.<|im_end|>",
+    "same_prefix_as_base": 15,
+    "identical": false,
+    "accept_hist": [
+     48
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.44,
+    "prefill_tok_s": 77.3,
+    "step_ms_median": 12.715,
+    "steps": 299,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 78.65,
+    "text": "The wind howled like a banshee, rattling the glass of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nAt low tide the next morning, Elias walked the rocky shore to inspect the foundation. Among the kelp and driftwood, a flash of green caught his eye. It was a heavy, antique bottle, corked tight with wax.\n\nBack in the warmth of the keeper\u2019s cottage, Elias pried the cork free. Inside was a single sheet of parchment, brittle with age. The handwriting was elegant, dated 1892.\n\n*\u201cTo whoever finds this,\u201d* it read. *\u201cI am the keeper of the St. Jude Light. I have been here for forty years. The sea is loud, and the silence is louder. I have no kin, and the world has forgotten me. If you read this, know that I existed. I kept the flame burning so that others might find their way home, even if I never found mine.\u201d*\n\nElias looked up from the note. He walked to the window and looked out at the lighthouse tower, standing tall against the crashing waves. He picked up his own pen and a fresh sheet of paper. He uncorked a new bottle.\n\nHe wrote, *\u201cI am here. I am listening. The light is still burning.\u201d*\n\nHe walked back to the shore and",
+    "same_prefix_as_base": 12,
+    "identical": false,
+    "accept_hist": [
+     299
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.391,
+    "prefill_tok_s": 76.7,
+    "step_ms_median": 12.924,
+    "steps": 299,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 77.38,
+    "text": "Here is a complete Python script containing the function, a detailed docstring, and a set of unit tests using the `unittest` module.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1, 1])\n        [1, 1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i = 0  # Pointer for list1\n    j = 0  # Pointer for list2\n\n    # Compare elements from both lists and append the smaller one\n    while i < len(list1)",
+    "same_prefix_as_base": 5,
+    "identical": false,
+    "accept_hist": [
+     299
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 24.823,
+    "prefill_tok_s": 78.1,
+    "step_ms_median": 12.784,
+    "steps": 9,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 78.1,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     9
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 50.867,
+    "prefill_tok_s": 77.4,
+    "step_ms_median": 13.147,
+    "steps": 9,
+    "tok_per_step": 1.0,
+    "decode_tok_s": 76.08,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     9
+    ]
+   }
+  },
+  "K1": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.052,
+    "prefill_tok_s": 96.9,
+    "step_ms_median": 16.422,
+    "steps": 17,
+    "tok_per_step": 1.824,
+    "decode_tok_s": 110.45,
+    "text": " Paris. In the city of Paris, there are 12 million people. The Eiffel Tower is in Paris. The Eiffel Tower is ",
+    "same_prefix_as_base": 4,
+    "identical": false,
+    "accept_hist": [
+     2,
+     15
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 49,
+    "prefill_s": 0.129,
+    "prefill_tok_s": 154.9,
+    "step_ms_median": 17.115,
+    "steps": 26,
+    "tok_per_step": 1.846,
+    "decode_tok_s": 107.78,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert carbon dioxide and water into food (glucose) and oxygen. It is the fundamental way that energy from the sun is captured and used to power life on Earth.<|im_end|>",
+    "same_prefix_as_base": 15,
+    "identical": false,
+    "accept_hist": [
+     4,
+     22
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.164,
+    "prefill_tok_s": 207.2,
+    "step_ms_median": 16.944,
+    "steps": 174,
+    "tok_per_step": 1.718,
+    "decode_tok_s": 101.41,
+    "text": "The wind howled like a banshee, rattling the glass of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nAt low tide the next morning, Elias walked the rocky shore to check for storm damage. Among the kelp and driftwood, a flash of green caught his eye. It was a wine bottle, corked tight and heavy with sand.\n\nBack in the warmth of the keeper\u2019s cottage, Elias pried the cork free. Inside was a single sheet of paper, brittle and yellowed. He unrolled it carefully. The handwriting was elegant, penned in faded ink.\n\n*\u201cTo the keeper of the light,\u201d* it read. *\u201cI am adrift in the fog of my own making. I have lost my way, not at sea, but in life. I ask only for a sign. If you read this, please light the lamp tonight. Let me know that there is still a shore to reach.\u201d*\n\nElias looked at the date at the bottom. It was from 1924.\n\nHe sat in silence for a long time. The sender was long gone, their ship likely at the bottom of the ocean. But the request remained.\n\nThat evening, as the sun dipped below the horizon, Elias climbed the spiral stairs. He polished the lens until it gleamed and lit the lamp. He didn't just do it for",
+    "same_prefix_as_base": 12,
+    "identical": false,
+    "accept_hist": [
+     49,
+     125
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.168,
+    "prefill_tok_s": 178.7,
+    "step_ms_median": 17.404,
+    "steps": 157,
+    "tok_per_step": 1.904,
+    "decode_tok_s": 109.24,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1, 1])\n        [1, 1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n",
+    "same_prefix_as_base": 219,
+    "identical": false,
+    "accept_hist": [
+     15,
+     142
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 9.321,
+    "prefill_tok_s": 207.9,
+    "step_ms_median": 17.955,
+    "steps": 5,
+    "tok_per_step": 1.8,
+    "decode_tok_s": 100.73,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     5
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 19.275,
+    "prefill_tok_s": 204.3,
+    "step_ms_median": 18.013,
+    "steps": 5,
+    "tok_per_step": 1.8,
+    "decode_tok_s": 100.68,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     5
+    ]
+   }
+  },
+  "K2": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.054,
+    "prefill_tok_s": 92.1,
+    "step_ms_median": 20.182,
+    "steps": 16,
+    "tok_per_step": 1.938,
+    "decode_tok_s": 95.87,
+    "text": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+    "same_prefix_as_base": 7,
+    "identical": false,
+    "accept_hist": [
+     4,
+     7,
+     5
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 35,
+    "prefill_s": 0.133,
+    "prefill_tok_s": 150.4,
+    "step_ms_median": 21.097,
+    "steps": 15,
+    "tok_per_step": 2.267,
+    "decode_tok_s": 107.66,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process also releases oxygen as a byproduct.<|im_end|>",
+    "same_prefix_as_base": 35,
+    "identical": true,
+    "accept_hist": [
+     2,
+     7,
+     6
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.169,
+    "prefill_tok_s": 201.5,
+    "step_ms_median": 20.841,
+    "steps": 148,
+    "tok_per_step": 2.02,
+    "decode_tok_s": 96.9,
+    "text": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on the wet sand. Half-buried in the dunes, a glint of green caught his eye. It was a bottle, corked tight and heavy with sand.\n\nHe pried the cork free. Inside was a slip of paper, yellowed and brittle. He unrolled it carefully. The handwriting was elegant, penned in faded ink.\n\n*\u201cTo the Keeper of the Light: I have watched your beam for three nights. It is the only thing that keeps me from the dark. I am adrift, not in the sea, but in my own mind. Please, keep the light burning. It is my only anchor.\u201d*\n\nElias looked out at the empty horizon. There were no ships in sight, no signs of a castaway. He realized the message wasn't a plea for rescue, but a plea for connection.\n\nHe walked back to the lighthouse, climbed the spiral stairs, and polished the brass of the great lens until it shone. As dusk fell, he lit the lamp. The beam swept across the water, cutting through the gloom. Elias stood",
+    "same_prefix_as_base": 80,
+    "identical": false,
+    "accept_hist": [
+     36,
+     73,
+     39
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.172,
+    "prefill_tok_s": 174.2,
+    "step_ms_median": 21.773,
+    "steps": 120,
+    "tok_per_step": 2.492,
+    "decode_tok_s": 114.25,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1])\n        [1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n        if list1[i]",
+    "same_prefix_as_base": 219,
+    "identical": false,
+    "accept_hist": [
+     8,
+     44,
+     68
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 9.387,
+    "prefill_tok_s": 206.5,
+    "step_ms_median": 22.141,
+    "steps": 4,
+    "tok_per_step": 2.25,
+    "decode_tok_s": 102.35,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     2,
+     2
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 19.152,
+    "prefill_tok_s": 205.6,
+    "step_ms_median": 22.025,
+    "steps": 4,
+    "tok_per_step": 2.25,
+    "decode_tok_s": 101.98,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     2,
+     2
+    ]
+   }
+  },
+  "K3": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.057,
+    "prefill_tok_s": 87.0,
+    "step_ms_median": 24.058,
+    "steps": 15,
+    "tok_per_step": 2.067,
+    "decode_tok_s": 85.87,
+    "text": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+    "same_prefix_as_base": 7,
+    "identical": false,
+    "accept_hist": [
+     3,
+     7,
+     4,
+     1
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 35,
+    "prefill_s": 0.099,
+    "prefill_tok_s": 201.1,
+    "step_ms_median": 24.758,
+    "steps": 15,
+    "tok_per_step": 2.267,
+    "decode_tok_s": 91.51,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process also releases oxygen as a byproduct.<|im_end|>",
+    "same_prefix_as_base": 35,
+    "identical": true,
+    "accept_hist": [
+     3,
+     7,
+     3,
+     2
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.172,
+    "prefill_tok_s": 197.7,
+    "step_ms_median": 24.548,
+    "steps": 147,
+    "tok_per_step": 2.034,
+    "decode_tok_s": 82.87,
+    "text": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on the wet sand. Half-buried in the dunes, a glint of green caught his eye. It was a bottle, corked tight and heavy with sand.\n\nHe pried the cork free. Inside was a slip of paper, yellowed and brittle. He unrolled it carefully. The handwriting was elegant, penned in faded ink.\n\n*\u201cTo the Keeper of the Light: I have watched your beam for three nights. It is the only thing that keeps me from the dark. I am adrift, not in the sea, but in my own mind. Please, keep the light burning. It is my only anchor.\u201d*\n\nElias looked out at the empty horizon. There were no ships in sight, no signs of a castaway. He realized the message wasn't a plea for rescue, but a plea for connection.\n\nHe walked back to the lighthouse, climbed the spiral stairs, and polished the brass of the great lens until it shone. As dusk fell, he lit the lamp. The beam swept across the water, cutting through the gloom. Elias stood",
+    "same_prefix_as_base": 80,
+    "identical": false,
+    "accept_hist": [
+     36,
+     75,
+     31,
+     5
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.177,
+    "prefill_tok_s": 169.9,
+    "step_ms_median": 25.988,
+    "steps": 113,
+    "tok_per_step": 2.646,
+    "decode_tok_s": 101.96,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1])\n        [1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n        if list1[i]",
+    "same_prefix_as_base": 219,
+    "identical": false,
+    "accept_hist": [
+     8,
+     38,
+     52,
+     15
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 9.37,
+    "prefill_tok_s": 206.8,
+    "step_ms_median": 25.929,
+    "steps": 4,
+    "tok_per_step": 2.25,
+    "decode_tok_s": 87.36,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     2,
+     2,
+     0
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 19.062,
+    "prefill_tok_s": 206.6,
+    "step_ms_median": 26.217,
+    "steps": 3,
+    "tok_per_step": 3.0,
+    "decode_tok_s": 114.74,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "K3b": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.058,
+    "prefill_tok_s": 86.0,
+    "step_ms_median": 24.455,
+    "steps": 15,
+    "tok_per_step": 2.067,
+    "decode_tok_s": 84.23,
+    "text": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+    "same_prefix_as_base": 7,
+    "identical": false,
+    "accept_hist": [
+     3,
+     7,
+     4,
+     1
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 35,
+    "prefill_s": 0.102,
+    "prefill_tok_s": 196.9,
+    "step_ms_median": 26.135,
+    "steps": 15,
+    "tok_per_step": 2.267,
+    "decode_tok_s": 86.66,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process also releases oxygen as a byproduct.<|im_end|>",
+    "same_prefix_as_base": 35,
+    "identical": true,
+    "accept_hist": [
+     3,
+     6,
+     4,
+     2
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.179,
+    "prefill_tok_s": 190.2,
+    "step_ms_median": 25.864,
+    "steps": 147,
+    "tok_per_step": 2.034,
+    "decode_tok_s": 78.76,
+    "text": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on the wet sand. Half-buried in the dunes, a glint of green caught his eye. It was a bottle, corked tight and heavy with sand.\n\nHe pried the cork free. Inside was a slip of paper, yellowed and brittle. He unrolled it carefully. The handwriting was elegant, penned in faded ink.\n\n*\u201cTo the Keeper of the Light: I have watched your beam for three nights. It is the only thing that keeps me from the dark. I am adrift, not in the sea, but in my own mind. Please, keep the light burning. It is my only anchor.\u201d*\n\nElias looked out at the empty horizon. There were no ships in sight, no signs of a castaway. He realized the message wasn't a plea for rescue, but a plea for connection.\n\nHe walked back to the lighthouse, climbed the spiral stairs, and polished the brass of the great lens until it shone. As dusk fell, he lit the lamp. The beam swept across the water, cutting through the gloom. Elias stood",
+    "same_prefix_as_base": 80,
+    "identical": false,
+    "accept_hist": [
+     36,
+     74,
+     33,
+     4
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.183,
+    "prefill_tok_s": 164.4,
+    "step_ms_median": 26.96,
+    "steps": 112,
+    "tok_per_step": 2.67,
+    "decode_tok_s": 99.16,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1])\n        [1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n        if list1[i]",
+    "same_prefix_as_base": 219,
+    "identical": false,
+    "accept_hist": [
+     8,
+     35,
+     54,
+     15
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 9.543,
+    "prefill_tok_s": 203.1,
+    "step_ms_median": 26.816,
+    "steps": 4,
+    "tok_per_step": 2.25,
+    "decode_tok_s": 84.26,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     2,
+     2,
+     0
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 19.206,
+    "prefill_tok_s": 205.0,
+    "step_ms_median": 26.91,
+    "steps": 3,
+    "tok_per_step": 3.0,
+    "decode_tok_s": 111.87,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "K4": {
+   "completion": {
+    "prompt_tokens": 5,
+    "new_tokens": 32,
+    "prefill_s": 0.032,
+    "prefill_tok_s": 157.8,
+    "step_ms_median": 27.198,
+    "steps": 15,
+    "tok_per_step": 2.067,
+    "decode_tok_s": 76.09,
+    "text": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+    "same_prefix_as_base": 7,
+    "identical": false,
+    "accept_hist": [
+     3,
+     7,
+     4,
+     1,
+     0
+    ]
+   },
+   "chat": {
+    "prompt_tokens": 20,
+    "new_tokens": 35,
+    "prefill_s": 0.104,
+    "prefill_tok_s": 192.9,
+    "step_ms_median": 28.97,
+    "steps": 15,
+    "tok_per_step": 2.267,
+    "decode_tok_s": 78.35,
+    "text": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process also releases oxygen as a byproduct.<|im_end|>",
+    "same_prefix_as_base": 35,
+    "identical": true,
+    "accept_hist": [
+     3,
+     7,
+     3,
+     2,
+     0
+    ]
+   },
+   "long": {
+    "prompt_tokens": 34,
+    "new_tokens": 300,
+    "prefill_s": 0.178,
+    "prefill_tok_s": 191.1,
+    "step_ms_median": 28.441,
+    "steps": 147,
+    "tok_per_step": 2.034,
+    "decode_tok_s": 71.55,
+    "text": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on the wet sand. Half-buried in the dunes, a glint of green caught his eye. It was a bottle, corked tight and heavy with sand.\n\nHe pried the cork free. Inside was a slip of paper, yellowed and brittle. He unrolled it carefully. The handwriting was elegant, penned in faded ink.\n\n*\u201cTo the Keeper of the Light: I have watched your beam for three nights. It is the only thing that keeps me from the dark. I am adrift, not in the sea, but in my own mind. Please, keep the light burning. It is my only anchor.\u201d*\n\nElias looked out at the empty horizon. There were no ships in sight, no signs of a castaway. He realized the message wasn't a plea for rescue, but a plea for connection.\n\nHe walked back to the lighthouse, climbed the spiral stairs, and polished the brass of the great lens until it shone. As dusk fell, he lit the lamp. The beam swept across the water, cutting through the gloom. Elias stood",
+    "same_prefix_as_base": 80,
+    "identical": false,
+    "accept_hist": [
+     36,
+     75,
+     31,
+     5,
+     0
+    ]
+   },
+   "code": {
+    "prompt_tokens": 30,
+    "new_tokens": 300,
+    "prefill_s": 0.182,
+    "prefill_tok_s": 165.0,
+    "step_ms_median": 29.722,
+    "steps": 112,
+    "tok_per_step": 2.67,
+    "decode_tok_s": 89.9,
+    "text": "Here is a complete Python solution. It includes the function with a detailed docstring, a set of unit tests using the `unittest` module, and a block to run the tests.\n\n```python\nimport unittest\n\ndef merge_sorted_lists(list1, list2):\n    \"\"\"\n    Merges two sorted lists into a single sorted list.\n\n    This function uses a two-pointer approach to iterate through both lists\n    simultaneously, appending the smaller element to the result list at each step.\n    This ensures the resulting list is sorted and the operation is efficient.\n\n    Args:\n        list1 (list): The first sorted list (ascending order).\n        list2 (list): The second sorted list (ascending order).\n\n    Returns:\n        list: A new list containing all elements from list1 and list2, sorted.\n\n    Examples:\n        >>> merge_sorted_lists([1, 3, 5], [2, 4, 6])\n        [1, 2, 3, 4, 5, 6]\n        >>> merge_sorted_lists([], [1, 2])\n        [1, 2]\n        >>> merge_sorted_lists([1, 1], [1])\n        [1, 1, 1]\n    \"\"\"\n    merged_list = []\n    i, j = 0, 0\n    \n    # Iterate while both lists have elements remaining\n    while i < len(list1) and j < len(list2):\n        if list1[i]",
+    "same_prefix_as_base": 219,
+    "identical": false,
+    "accept_hist": [
+     8,
+     39,
+     50,
+     11,
+     4
+    ]
+   },
+   "ctx2000": {
+    "prompt_tokens": 1938,
+    "new_tokens": 10,
+    "prefill_s": 9.416,
+    "prefill_tok_s": 205.8,
+    "step_ms_median": 29.724,
+    "steps": 4,
+    "tok_per_step": 2.25,
+    "decode_tok_s": 76.16,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     2,
+     2,
+     0,
+     0
+    ]
+   },
+   "ctx4000": {
+    "prompt_tokens": 3938,
+    "new_tokens": 10,
+    "prefill_s": 19.139,
+    "prefill_tok_s": 205.8,
+    "step_ms_median": 29.969,
+    "steps": 3,
+    "tok_per_step": 3.0,
+    "decode_tok_s": 100.47,
+    "needle": true,
+    "text": "violet-harbor-417<|im_end|>",
+    "same_prefix_as_base": 10,
+    "identical": true,
+    "accept_hist": [
+     0,
+     1,
+     1,
+     1,
+     0
+    ]
+   }
+  }
+ }
+}

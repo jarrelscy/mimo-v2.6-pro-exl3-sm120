@@ -28,6 +28,7 @@ for rep in range(a.reps):
         TP.PF.clear(); TP.PF.update(TP.parse_pf(kv.get("pf", "").replace("+", ",")))
         car.PF_BLK = int(kv.get("blk", "32"))
         TP.FUSENORM = kv.get("fuse", "0") == "1"
+        car.THR1 = int(kv.get("thr1", "256"))
         TP.HOT_GU[:] = [int(v) for v in kv.get("hot", "2,1024,4").split(",")]
         model.graph = None; gc.collect(); torch.cuda.empty_cache()
         model.capture()

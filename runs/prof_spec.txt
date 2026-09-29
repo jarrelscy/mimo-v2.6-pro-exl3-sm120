@@ -1,0 +1,85 @@
+== base M=1 graph: kernel time 11.64 ms/step
+  cold MoE (EXL3 trellis)        2.994 ms   25.7%
+  bf16 o_proj/lm_head gemv       2.589 ms   22.3%
+  fp8 qkv/draft gemv             1.951 ms   16.8%
+  allreduce                      1.941 ms   16.7%
+  gate+route                     0.782 ms    6.7%
+  hot MoE (NVFP4)                0.490 ms    4.2%
+  norm/rope/kv                   0.474 ms    4.1%
+  attention                      0.306 ms    2.6%
+  dense L0/MTP mm                0.066 ms    0.6%
+  other                          0.045 ms    0.4%
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                      _bf16_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      12.947ms        22.25%      12.947ms      35.964us           360  
+                                      _fp8_gemv2_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       9.757ms        16.77%       9.757ms      27.877us           350  
+void car_kernel<4>(float*, int, int, int, Ptrs, floa...         0.00%       0.000us         0.00%       0.000us       0.000us       9.703ms        16.68%       9.703ms      13.763us           705  
+void moe_gu_kernel<false>(__nv_bfloat16 const*, long...         0.00%       0.000us         0.00%       0.000us       0.000us       8.035ms        13.81%       8.035ms      23.290us           345  
+void moe_down_kernel<true>(long const*, long const*,...         0.00%       0.000us         0.00%       0.000us       0.000us       5.101ms         8.77%       5.101ms      14.784us           345  
+                                      _gate_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       2.517ms         4.33%       2.517ms       7.295us           345  
+                                     _nvfp4_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       2.452ms         4.21%       2.452ms       6.054us           405  
+                                    _add_rmsnorm_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.786ms         3.07%       1.786ms       2.533us           705  
+                                          _route_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.391ms         2.39%       1.391ms       4.032us           345  
+moe_act_kernel(long const*, long const*, long const*...         0.00%       0.000us         0.00%       0.000us       0.000us       1.011ms         1.74%       1.011ms       2.930us           345  
+                                    _attn_decode_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     993.555us         1.71%     993.555us       2.839us           350  
+moe_out_kernel(long const*, float const*, long const...         0.00%       0.000us         0.00%       0.000us       0.000us     821.765us         1.41%     821.765us       2.382us           345  
+                                       _qkv_post_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     581.919us         1.00%     581.919us       1.663us           350  
+                                   _attn_combine_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     534.083us         0.92%     534.083us       1.526us           350  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     327.907us         0.56%     327.907us      65.581us             5  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      57.218us         0.10%      57.218us      11.444us             5  
+                                          memcpy32_post         0.00%       0.000us         0.00%       0.000us       0.000us      35.969us         0.06%      35.969us       1.028us            35  
+void at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      29.537us         0.05%      29.537us       5.907us             5  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us      23.648us         0.04%      23.648us       1.182us            20  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      13.216us         0.02%      13.216us       2.643us             5  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us      10.400us         0.02%      10.400us       1.040us            10  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       8.032us         0.01%       8.032us       0.803us            10  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us       7.680us         0.01%       7.680us       1.536us             5  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       7.360us         0.01%       7.360us       1.472us             5  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       7.008us         0.01%       7.008us       1.402us             5  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 65.402ms
+Self CUDA time total: 58.185ms
+
+== spec K=3 (MM=4) graph: kernel time 23.93 ms/step
+  allreduce                      7.965 ms   33.3%
+  cold MoE (EXL3 trellis)        6.450 ms   27.0%
+  fp8 qkv/draft gemv             2.910 ms   12.2%
+  bf16 o_proj/lm_head gemv       2.816 ms   11.8%
+  hot MoE (NVFP4)                1.479 ms    6.2%
+  gate+route                     0.874 ms    3.7%
+  attention                      0.669 ms    2.8%
+  norm/rope/kv                   0.533 ms    2.2%
+  other                          0.161 ms    0.7%
+  dense L0/MTP mm                0.073 ms    0.3%
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+void car_kernel<4>(float*, int, int, int, Ptrs, floa...         0.00%       0.000us         0.00%       0.000us       0.000us      39.825ms        33.28%      39.825ms      52.059us           765  
+void moe_gu_m_kernel<false>(long const*, int const*,...         0.00%       0.000us         0.00%       0.000us       0.000us      15.680ms        13.10%      15.680ms      45.450us           345  
+                                    _fp8_gemv_md_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      14.552ms        12.16%      14.552ms      35.492us           410  
+                                   _bf16_gemv_md_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      14.078ms        11.77%      14.078ms      36.099us           390  
+void moe_down_m_kernel<true>(long const*, int const*...         0.00%       0.000us         0.00%       0.000us       0.000us      12.281ms        10.26%      12.281ms      35.597us           345  
+                                     _nvfp4_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       7.395ms         6.18%       7.395ms      18.259us           405  
+                                    _gate_gemv_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       2.980ms         2.49%       2.980ms       8.639us           345  
+                                         _attn_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       2.769ms         2.31%       2.769ms       7.587us           365  
+                                  _add_rmsnorm_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.971ms         1.65%       1.971ms       2.528us           780  
+                                        _route_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.392ms         1.16%       1.392ms       4.035us           345  
+moe_rot_kernel(__nv_bfloat16 const*, long const*, lo...         0.00%       0.000us         0.00%       0.000us       0.000us       1.256ms         1.05%       1.256ms       3.640us           345  
+moe_act_kernel(long const*, long const*, long const*...         0.00%       0.000us         0.00%       0.000us       0.000us       1.066ms         0.89%       1.066ms       3.090us           345  
+moe_runs_kernel(long const*, long const*, int, int*)...         0.00%       0.000us         0.00%       0.000us       0.000us       1.046ms         0.87%       1.046ms       3.033us           345  
+moe_out_m_kernel(long const*, float const*, long con...         0.00%       0.000us         0.00%       0.000us       0.000us     918.987us         0.77%     918.987us       2.664us           345  
+                                     _qkv_post_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     695.587us         0.58%     695.587us       1.906us           365  
+                                 _attn_combine_m_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     577.640us         0.48%     577.640us       1.583us           365  
+void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_...         0.00%       0.000us         0.00%       0.000us       0.000us     367.427us         0.31%     367.427us      73.485us             5  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us     226.624us         0.19%     226.624us      11.331us            20  
+                         Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us      86.147us         0.07%      86.147us       0.957us            90  
+void at::native::(anonymous namespace)::indexSelectS...         0.00%       0.000us         0.00%       0.000us       0.000us      65.217us         0.05%      65.217us       2.609us            25  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      53.410us         0.04%      53.410us       2.671us            20  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us      47.105us         0.04%      47.105us       1.178us            40  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us      29.920us         0.03%      29.920us       1.197us            25  
+void at::native::_scatter_gather_elementwise_kernel<...         0.00%       0.000us         0.00%       0.000us       0.000us      28.896us         0.02%      28.896us       1.445us            20  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us      28.320us         0.02%      28.320us       1.416us            20  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 132.327ms
+Self CUDA time total: 119.657ms

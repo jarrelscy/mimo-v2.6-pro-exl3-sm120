@@ -1,0 +1,11 @@
+[04:39:31] [server] model ready (sampling=on, spec K=2, LMAX=32768)
+models: ['local', 'mimo-v2.6-pro-exl3']
+completion: ' Paris. In the early Middle Ages Paris was one of the major cities of the' length {'prompt_tokens': 5, 'completion_tokens': 16, 'total_tokens': 21, 'prompt_tokens_details': {'cached_tokens': 0}} 0.18s
+chat(no-think): {"role": "assistant", "content": "Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to create their own food (glucose) and release oxygen as a byproduct."} stop {'prompt_tokens': 18, 'completion_tokens': 34, 'total_tokens': 52, 'prompt_tokens_details': {'cached_tokens': 0}} 0.32s
+chat(think): reasoning '17*23 = 391' ... content '391' stop {'prompt_tokens': 19, 'completion_tokens': 16, 'total_tokens': 35, 'prompt_tokens_details': {'cached_tokens': 0}} 0.23s
+stream chat: 22 events '1 2 3 4 5 6 7 8 9 10' {'prompt_tokens': 21, 'completion_tokens': 21, 'total_tokens': 42, 'prompt_tokens_details': {'cached_tokens': 0}}
+stop-string: ' 5, 6,' stop
+sampled t=0.8: ' there lived a man and his wife who loved each other dearly. The beauty of their love was admired by all, even the birds in the trees would'
+tools: {"role": "assistant", "content": null, "tool_calls": [{"id": "call_f1fbf340943a4bcf8fc13bdc", "type": "function", "function": {"name": "get_weather", "arguments": "{\"city\": \"Paris\"}"}}]} tool_calls
+turn2: 'Green.' usage {'prompt_tokens': 28, 'completion_tokens': 3, 'total_tokens': 31, 'prompt_tokens_details': {'cached_tokens': 15}}
+released by mimo

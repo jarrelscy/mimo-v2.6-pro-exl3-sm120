@@ -35,7 +35,7 @@ def parse_pf(spec):
         k, v = part.split("=")
         out[k] = [(t[0], float(t[1:])) for t in v.split(",") if t]
     return out
-PF = parse_pf(os.environ.get("MIMO_PF", ""))
+PF = parse_pf(os.environ.get("MIMO_PF", "A=q42/D=o24"))  # L2 prefetch during ARs: +4.5% (ab_pf, bit-identical)
 # fuse residual add + next rmsnorm into the custom all-reduce epilogue
 FUSENORM = os.environ.get("MIMO_FUSENORM", "0") == "1"
 KSMAX = 8

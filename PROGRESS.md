@@ -10,6 +10,8 @@ Reference: /data/Jarrel/mimo-pro-exl3-smoke (untouched). Work dir: /data/Jarrel/
 | 0 | reference loader (PP over 4 GPUs, eager, per-expert python loop) | ~345 | 2.85-2.92 | - | - | Paris / chat stops / story OK |
 | 1 | TP4 (mimo_tp.py): all fused kernels, 1 CUDA graph/step, NCCL all-reduce (P2P_LEVEL=SYS) | 12.64 | 79.1 | 76.5 | 75.3 | chat identical to ref; story same opening, coherent; completion drifts after 6 tokens (numeric); needle 2K/4K PASS |
 | 2 | + custom P2P one-shot all-reduce (car_ext.cu, nb=1) + fp8 qkv GEMV v2 (BK=512) + Triton gate GEMV | 11.80 | 83.0 | 81.6 | 77.2 | chat stops at <\|im_end\|>, story coherent 300 tok, needle 2K/4K PASS |
+| 3 | + L2 prefetch (evict_last) of next qkv/o_proj by extra AR blocks (MIMO_PF=A=q42/D=o24) + car 256 threads | 10.67 | 93.6 (code 91.4) | 90.1 | 88.6 | bit-identical to row 2 tokens; needles PASS |
+| 4 | + MTP self-speculation K=2 (spec_tp.py; fp8 drafts, 512-thread multi-row car) = server default | 18.8/step, 2.02-2.49 tok/step | 107.4 (code 127.4, chat 119.0) | 116.2 | 114.5 | chat identical to base; story/code coherent, drift vs base after 80/219 tok; needles PASS; server suite PASS |
 
 ## Layer-level (single GPU3, layer 60 = SWA + MoE with 73 hot NVFP4 experts)
 
@@ -85,3 +87,99 @@ gemv path is noisier). So small greedy-text drift vs the reference is expected a
     <= K+1 prompt tokens go through the decode graph, so drafts/sampling are set up exactly as before. W=1 test with a
     301-token prompt (crosses the 128 SWA window): identical to K=0.
   - Multi-row all-reduce knob MIMO_SPEC_CAR_NB (needs MIMO_CAR_NB >= it); bench car_bench_m.py.
+- 2026-09-29 14:24 **batch2 (first full-model spec run, car nb=1 / 128 threads)**. Decode tok/s (greedy, 300-tok story/code, 2K/4K needle):
+
+  | run | completion | chat | story | code | ctx2K | ctx4K | ms/step | tok/step (story/code) |
+  |---|---|---|---|---|---|---|---|---|
+  | base (M=1 graph) | 88.0 | 86.8 | 87.3 | 85.4 | 84.3 | 83.3 | 11.4 | 1 |
+  | spec K=0 (M-row kernels, MM=1) | 79.3 | 77.6 | 78.7 | 77.4 | 78.1 | 76.1 | ~12.7 | 1 |
+  | spec K=1 | 110.5 | 107.8 | 101.4 | 109.2 | 100.7 | 100.7 | 16.4-18.0 | 1.72 / 1.90 |
+  | spec K=2 | 95.9 | 107.7 | 96.9 | 114.3 | 102.4 | 102.0 | 20.2-22.1 | 2.02 / 2.49 |
+  | spec K=3 | 85.9 | 91.5 | 82.9 | 102.0 | 87.4 | 114.7* | 24.1-26.2 | 2.03 / 2.65 |
+  | spec K=3, bf16 drafts | 84.2 | 86.7 | 78.8 | 99.2 | 84.3 | 111.9* | 24.5-26.9 | 2.03 / 2.67 |
+  | spec K=4 | 76.1 | 78.4 | 71.6 | 89.9 | 76.2 | 100.5* | 27.2-30.0 | 2.03 / 2.67 |
+
+  (*ctx4K is only 10 new tokens / 3 steps: noisy.) Needles 2K/4K PASS for every K; chat identical to base for K>=2;
+  story/code diverge from base after 12-219 tokens (M-row kernels round differently, temp-0 drift; text coherent).
+  MTP acceptance: first draft ~72-90%, but acceptance of draft 2+ is low (story K=3 hist [36,75,31,5]).
+  fp8 drafts: same acceptance as bf16 drafts (hist within noise) and ~1-1.3 ms/step faster -> kept.
+  Profile K=3 step (23.9 ms kernel time): **all-reduce 7.97 ms (33%)**, cold MoE 6.45, fp8 GEMV 2.91, bf16 GEMV 2.82,
+  hot MoE 1.48. Base M=1 step (11.64 ms): cold MoE 2.99, bf16 GEMV 2.59, fp8 GEMV 1.95, all-reduce 1.94, gate+route 0.78.
+  => the multi-row all-reduce was the problem: car_bench_m: 4 rows = 51 us at nb=1/128 thr vs 13 us for 1 row.
+- Prefetch A/B (ab_pf, base path): pf=A=q42/D=o24 10.92 ms (91.5 tok/s) vs 11.42 (87.5), bit-identical -> DEFAULT ON.
+  fuse=1 (norm fused into the AR epilogue) 12.24 ms = SLOWER and not bit-identical to the unfused run -> not shipped
+  (the single 128-thread block doing the norm serializes behind the PCIe wait).
+- car thread sweep (car_bench_m2.py, all configs bit-exact): the one-shot push is limited by outstanding remote stores per
+  block, not by block count: 4 rows 51 -> 22.1 us with 512 threads (nb=1); 2 rows 27.6 -> 18.6; 1 row 15.0 -> 11.5 us
+  with 256 threads. More blocks are worse (each block adds a flag handshake). car now picks 256 (1 row) / 512 (multi-row).
+- 2026-09-29 14:35 **batch3** (car auto threads + prefetch default + prefetch inside the spec step). Base 10.67-10.76 ms
+  (93.7 tok/s) with thr1=256 vs 10.80-10.89 with 128, both bit-identical. Spec decode tok/s:
+
+  | run | completion | chat | story | code | ctx2K | ctx4K | ms/step (story) | tok/step story/code |
+  |---|---|---|---|---|---|---|---|---|
+  | base | 94.9 | 92.9 | 93.6 | 91.4 | 90.1 | 88.6 | 10.67 | 1 |
+  | K=1 | 115.2 | 112.7 | 106.3 | 113.3 | 107.6 | 107.5 | 16.17 | 1.72 / 1.90 |
+  | **K=2** | 105.3 | **119.0** | **107.4** | **127.4** | **116.2** | 114.5 | 18.80 | 2.02 / 2.49 |
+  | K=3 | 98.9 | 103.9 | 94.6 | 115.8 | 96.7 | 126.8* | 21.50 | 2.03 / 2.65 |
+
+  K=3 step 23.9 -> 21.5 ms from the all-reduce fix alone. K=2 chosen (best or tied on every realistic test).
+- Server (MIMO_SPEC=2 ./run_server.sh, test_server.py): completion " Paris. In the early Middle Ages...", chat stops,
+  thinking split (17*23 -> 391), SSE stream, stop strings, sampled t=0.8, tool call, turn-2 prefix reuse (cached 15): all PASS.
+
+## Profile before / after (kernel time per decode step, rank 0, prof_spec.py / smoke_tp.py --profile)
+
+| bucket | v1 (NCCL AR) 1 tok | v2+ base 1 tok | spec K=3, 4 rows (nb=1/128 thr car) |
+|---|---|---|---|
+| all-reduce | 27.9 ms under profiler (NCCL LL, ~13 us net each) | 1.94 | 7.97 -> ~3.1 after the 512-thread fix (22 us x 142) |
+| cold MoE (EXL3 trellis, ALU-bound) | 2.8 | 2.99 | 6.45 |
+| bf16 GEMV (o_proj, lm_head, eh_proj) | 2.6 | 2.59 | 2.82 |
+| fp8 GEMV (qkv, drafts) | 2.5 | 1.95 | 2.91 |
+| hot MoE (NVFP4) | 1.1 | 0.49 | 1.48 |
+| gate + route | 0.9 | 0.78 | 0.87 |
+| attention | 0.2 | 0.31 | 0.67 |
+| norm/rope/kv | 0.5 | 0.47 | 0.53 |
+| total | ~12.6 wall | 11.64 (10.67 wall with prefetch) | 23.93 |
+
+(v1 NCCL time is inflated by the profiler; the E2E difference v1->v2 was 0.84 ms/step.)
+
+## What did not work (and why)
+- Split-K for the cold EXL3 MoE (moe_ext set_ksplit): 98-148 us vs 99 us/layer. The 2-bit trellis decode is ALU-bound at
+  bs=1, not bandwidth-bound, so more CTAs over K only add a reduction.
+- More all-reduce blocks (nb 2-8): every block runs its own sys-scope flag handshake over PCIe; 1 row nb=8 = 30 us vs
+  12. Multi-row wants more threads in ONE block (outstanding remote stores), not more blocks.
+- Fused AR epilogue (residual add + rmsnorm inside car, MIMO_FUSENORM=1): 12.24 vs 11.42 ms, and not bit-identical to
+  the unfused run. A single block doing the norm serializes behind the PCIe wait; kept as an option, off.
+- Plain-load L2 warmup (ld.L1::no_allocate) instead of prefetch.global.L2::evict_last: the lines are evicted by the
+  24+ MB of intervening traffic, no gain. evict_last is what makes the prefetch survive.
+- CUDA-core M-row GEMVs (3D accumulator): cost grows with M (43 us at M=4 vs 29.6 flat for tl.dot tensor-core ones).
+- Deeper speculation (K>=3): MTP acceptance of draft 2+ is low (story K=3 accept hist [36,75,31,5]); each extra row
+  costs ~2.7 ms (mostly more unique cold experts to decode), so K=3/4 lose except on very predictable text.
+- int8 dp4a mul1 GEMV (upstream exl3_gemv_int8): not ported. Dense-only cooperative kernel, slightly lossy, and its cost is
+  linear in rows while our MMA gemv_tile makes extra rows of the same expert nearly free; at best ~3% at M=1.
+- PP (pipeline over 4 GPUs) fused full model: illegal memory access at full depth; TP4 is strictly better for bs=1.
+
+## Remaining bottleneck
+- Plain decode (10.67 ms): cold EXL3 MoE ~3.0 ms (trellis decode ALU-bound; floor set by the codebook math, not DRAM),
+  bf16/fp8 GEMVs ~4.5 ms (near DRAM bandwidth for 1.2 GB/rank/step), all-reduce ~1.9 ms for 142 ARs at ~11.5 us each
+  (PCIe latency floor; only fewer ARs would help).
+- Spec K=2 (18.8 ms for 3 rows): cold MoE scales with UNIQUE experts (3 rows ~ 19-22 of 384 vs 8), so verification of
+  each extra row costs ~2.5-3 ms; the MTP draft passes (batched + chain, 3 ARs each) ~1.5 ms. Better drafts (higher
+  acceptance of draft 2+, e.g. a DFlash-style block drafter) are the lever with the most headroom; faster cold-expert
+  decode helps both paths.
+
+## Reproduce
+```bash
+cd /data/Jarrel/mimo-pro-exl3-fast && source env.sh
+export NCCL_P2P_LEVEL=SYS OMP_NUM_THREADS=8
+# kernel/logic tests (1 GPU)
+CUDA_VISIBLE_DEVICES=3 python test_kernels_m.py; CUDA_VISIBLE_DEVICES=3 python test_moe_m.py 10
+CUDA_VISIBLE_DEVICES=3 python test_spec_w1.py
+# full model (4 GPUs, ~72 GiB each): base + spec smoke/speed, A/B of knobs, profile, all-reduce sweeps
+python -m torch.distributed.run --nproc-per-node 4 smoke_tp.py                     # base path, smoke + tok/s
+python -m torch.distributed.run --nproc-per-node 4 spec_smoke.py --ks 0,1,2,3      # base + spec K, smoke + tok/s
+python -m torch.distributed.run --nproc-per-node 4 ab_tp.py --configs "pf=;thr1=128|pf=A=q42/D=o24;thr1=256" --reps 2
+python -m torch.distributed.run --nproc-per-node 4 prof_spec.py --k 2
+python -m torch.distributed.run --nproc-per-node 4 car_bench_m2.py
+# server (port 8003, spec K=2 by default; MIMO_SPEC=0 for plain decode)
+./run_server.sh & python test_server.py
+```
