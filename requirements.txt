@@ -1,0 +1,10 @@
+# Python 3.12, CUDA 12.8 toolkit (nvcc for the JIT extensions), 4x SM120 GPUs
+torch==2.10.0  # cu128 wheel
+triton==3.6.0
+exllamav3==1.5.1
+safetensors
+tokenizers
+numpy
+ninja
+fastapi
+uvicorn
