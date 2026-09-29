@@ -1,0 +1,22 @@
+{
+ "W": 4,
+ "load_s": 105.49427676200867,
+ "vram_alloc_gib_rank0": 71.82961416244507,
+ "env": {
+  "NCCL_P2P_LEVEL": "SYS"
+ },
+ "tests": [
+  {
+   "name": "completion",
+   "output": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+   "prompt_tokens": 5,
+   "new_tokens": 32,
+   "prefill_s": 0.06506562232971191,
+   "prefill_tok_s": 76.84549568531173,
+   "step_ms_median": 12.74140365421772,
+   "step_ms_min": 12.58490514010191,
+   "decode_tok_s": 78.1838625418661
+  }
+ ],
+ "max_reserved_gib_rank0": 77.712890625
+}

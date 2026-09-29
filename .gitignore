@@ -1,0 +1,10 @@
+pylib/
+.triton/
+.torch_ext/
+.pipcache/
+__pycache__/
+*.o
+*.so
+*.bak*
+runs/*.log
+runs/*_trace.json

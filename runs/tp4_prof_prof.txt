@@ -1,0 +1,46 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+ncclDevKernel_AllReduce_Sum_f32_RING_LL(ncclDevKerne...         0.00%       0.000us         0.00%       0.000us       0.000us     139.564ms        72.05%     139.564ms     199.377us           700  
+                                      _bf16_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      12.895ms         6.66%      12.895ms      35.820us           360  
+                                       _fp8_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us      12.596ms         6.50%      12.596ms      35.990us           350  
+void moe_gu_kernel<false>(__nv_bfloat16 const*, long...         0.00%       0.000us         0.00%       0.000us       0.000us       6.679ms         3.45%       6.679ms      19.360us           345  
+                                     _nvfp4_gemv_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       5.567ms         2.87%       5.567ms      13.745us           405  
+void moe_down_kernel<true>(long const*, long const*,...         0.00%       0.000us         0.00%       0.000us       0.000us       4.779ms         2.47%       4.779ms      13.852us           345  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us       2.976ms         1.54%       2.976ms       8.627us           345  
+                                    _add_rmsnorm_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.781ms         0.92%       1.781ms       2.527us           705  
+                                          _route_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.395ms         0.72%       1.395ms       4.044us           345  
+moe_act_kernel(long const*, long const*, long const*...         0.00%       0.000us         0.00%       0.000us       0.000us       1.086ms         0.56%       1.086ms       3.148us           345  
+                                    _attn_decode_kernel         0.00%       0.000us         0.00%       0.000us       0.000us       1.001ms         0.52%       1.001ms       2.861us           350  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us     865.863us         0.45%     865.863us       2.474us           350  
+moe_out_kernel(long const*, float const*, long const...         0.00%       0.000us         0.00%       0.000us       0.000us     843.518us         0.44%     843.518us       2.445us           345  
+                                       _qkv_post_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     572.483us         0.30%     572.483us       1.636us           350  
+                                   _attn_combine_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     538.177us         0.28%     538.177us       1.538us           350  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     326.819us         0.17%     326.819us      65.364us             5  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      56.800us         0.03%      56.800us      11.360us             5  
+ncclDevKernel_AllGather_RING_LL(ncclDevKernelArgsSto...         0.00%       0.000us         0.00%       0.000us       0.000us      39.232us         0.02%      39.232us       7.846us             5  
+                                          memcpy32_post         0.00%       0.000us         0.00%       0.000us       0.000us      25.952us         0.01%      25.952us       1.038us            25  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us      22.944us         0.01%      22.944us       1.147us            20  
+void at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      22.817us         0.01%      22.817us       4.563us             5  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      14.368us         0.01%      14.368us       2.874us             5  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us      10.304us         0.01%      10.304us       1.030us            10  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       7.168us         0.00%       7.168us       1.434us             5  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us       6.336us         0.00%       6.336us       1.267us             5  
+void at::native::(anonymous namespace)::indexSelectS...         0.00%       0.000us         0.00%       0.000us       0.000us       6.112us         0.00%       6.112us       1.222us             5  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       6.112us         0.00%       6.112us       1.222us             5  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       5.632us         0.00%       5.632us       1.126us             5  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us       5.056us         0.00%       5.056us       1.011us             5  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       4.224us         0.00%       4.224us       0.845us             5  
+                                             aten::item         0.01%      10.160us        96.29%     190.549ms      38.110ms       0.000us         0.00%       2.304us       0.461us             5  
+                              aten::_local_scalar_dense         0.02%      33.479us        96.29%     190.538ms      38.108ms       2.304us         0.00%       2.304us       0.461us             5  
+                         Memcpy DtoH (Device -> Pinned)         0.00%       0.000us         0.00%       0.000us       0.000us       2.304us         0.00%       2.304us       0.461us             5  
+                                   cudaDriverGetVersion         0.00%       0.460us         0.00%       0.460us       0.092us       0.384us         0.00%       0.384us       0.077us             5  
+                                  cudaStreamIsCapturing         0.00%       7.150us         0.00%       7.150us       1.430us       0.000us         0.00%       0.000us       0.000us             5  
+                                Activity Buffer Request         0.44%     874.979us         0.44%     874.979us     874.979us       0.000us         0.00%       0.000us       0.000us             1  
+                                        cudaGraphLaunch         3.25%       6.439ms         3.25%       6.439ms       1.288ms       0.000us         0.00%       0.000us       0.000us             5  
+                                        cudaMemcpyAsync         0.02%      43.379us         0.02%      43.379us       8.676us       0.000us         0.00%       0.000us       0.000us             5  
+                                  cudaStreamSynchronize        96.25%     190.462ms        96.25%     190.462ms      38.092ms       0.000us         0.00%       0.000us       0.000us             5  
+                                  cudaDeviceSynchronize         0.01%      14.329us         0.01%      14.329us       7.165us       0.000us         0.00%       0.000us       0.000us             2  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 197.884ms
+Self CUDA time total: 193.703ms

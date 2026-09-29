@@ -1,0 +1,66 @@
+{
+ "W": 4,
+ "load_s": 111.87403631210327,
+ "vram_alloc_gib_rank0": 71.82961416244507,
+ "env": {
+  "NCCL_P2P_LEVEL": "SYS"
+ },
+ "tests": [
+  {
+   "name": "completion",
+   "output": " Paris. In the early Middle Ages Paris was one of the major cities of the Carolingian Empire, but it went into decline in the 10th",
+   "prompt_tokens": 5,
+   "new_tokens": 32,
+   "prefill_s": 0.06460022926330566,
+   "prefill_tok_s": 77.39910611803523,
+   "step_ms_median": 12.743220664560795,
+   "step_ms_min": 12.61392142623663,
+   "decode_tok_s": 78.21261900844482
+  },
+  {
+   "name": "chat",
+   "output": "Photosynthesis is the process by which plants and other organisms use sunlight to convert water and carbon dioxide into energy-rich sugars. This process releases oxygen as a byproduct.<|im_end|>",
+   "prompt_tokens": 20,
+   "new_tokens": 34,
+   "prefill_s": 0.2643320560455322,
+   "prefill_tok_s": 75.66240848425483,
+   "step_ms_median": 12.922259047627449,
+   "step_ms_min": 12.692130170762539,
+   "decode_tok_s": 77.40673986050167
+  },
+  {
+   "name": "long",
+   "output": "The wind howled like a banshee, rattling the panes of the lantern room. Elias, the keeper of the St. Jude Light, watched the grey Atlantic churn below. It was a lonely life, but the solitude suited him.\n\nThe next morning, the storm had passed, leaving the beach littered with driftwood and kelp. Elias walked the shoreline, his boots crunching on the wet sand. Half-buried in the foam was a green glass bottle, corked tight with wax.\n\nHe pried the cork free. Inside was a single sheet of paper, brittle and yellowed. He unfolded it carefully.\n\n*\u201cTo whoever finds this,\u201d* the handwriting read, shaky and desperate. *\u201cI am stranded on the Isle of Shadows. The fog is thick, and the rocks are sharp. Please, light the way. I am waiting.\u201d*\n\nElias frowned. The Isle of Shadows was a jagged reef five miles out, a graveyard for ships. He looked at the horizon. The sun was setting, painting the sky in bruised purples.\n\nHe ran back to the lighthouse, his heart pounding. He climbed the spiral stairs, two steps at a time. He didn't just light the lamp; he cranked the mechanism to its highest intensity, the beam cutting through the gathering dusk with blinding white fury.\n\nHe stood at the window, watching the beam sweep the water. He didn't know if the message was from yesterday or a",
+   "prompt_tokens": 34,
+   "new_tokens": 300,
+   "prefill_s": 0.4451150894165039,
+   "prefill_tok_s": 76.38473915716989,
+   "step_ms_median": 12.640210799872875,
+   "step_ms_min": 12.312264181673527,
+   "decode_tok_s": 79.10088182656418
+  },
+  {
+   "name": "ctx2000",
+   "output": "violet-harbor-417<|im_end|>",
+   "prompt_tokens": 1938,
+   "new_tokens": 10,
+   "prefill_s": 25.10829257965088,
+   "prefill_tok_s": 77.18565465381984,
+   "step_ms_median": 13.110066764056683,
+   "step_ms_min": 12.835108675062656,
+   "decode_tok_s": 76.48885359251935
+  },
+  {
+   "name": "ctx4000",
+   "output": "violet-harbor-417<|im_end|>",
+   "prompt_tokens": 3938,
+   "new_tokens": 10,
+   "prefill_s": 51.50160813331604,
+   "prefill_tok_s": 76.46363177254915,
+   "step_ms_median": 13.25184479355812,
+   "step_ms_min": 13.078386895358562,
+   "decode_tok_s": 75.31887799484207
+  }
+ ],
+ "max_reserved_gib_rank0": 77.712890625
+}
